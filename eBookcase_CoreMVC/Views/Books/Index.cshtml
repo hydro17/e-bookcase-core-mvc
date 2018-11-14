@@ -1,8 +1,52 @@
-﻿
+﻿@model IEnumerable<eBookcase_CoreMVC.Models.BookCoreMVC>
 @{
     ViewData["Title"] = "Index";
 }
 
 <br /><br />
-<h3 class="text-info" style="font-weight:normal">Book list</h3>
+<div class="row">
+    <div class="col">
+        <h3 class="text-info" style="font-weight:normal">Book list</h3>
+    </div>
+    <div class="col text-right">
+        <a asp-action="Create" class="btn btn-info">Create new book</a>
+    </div>
+</div>
 
+<br />
+
+<table class="table table-striped border">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(m => m.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.Author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.ISBN)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var book in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => book.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(m => book.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(m => book.ISBN)
+            </td>
+            <td class="text-right">
+                <a asp-action="Edit" asp-route-id="@book.Id" class="btn btn-success btn-sm">Edit</a>
+                <a asp-action="Delete" asp-route-id="@book.Id" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<br />
