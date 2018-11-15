@@ -13,7 +13,10 @@ namespace eBookcase_CoreMVC.Models
         [Required]
         public string Name { get; set; }
 
+        [RegularExpression(@"[^\d]*", ErrorMessage = "Digits are not allowed")]
         public string Author { get; set; }
+
+        [RegularExpression(@"[\d-]*", ErrorMessage = "Only digits and \"-\" are allowed")]
         public string ISBN { get; set; }
     }
 }
